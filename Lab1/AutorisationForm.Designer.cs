@@ -28,19 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.LoginTextBox = new System.Windows.Forms.TextBox();
             this.LoginLabel = new System.Windows.Forms.Label();
             this.PasswordLabel = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.PasswordTextBox = new System.Windows.Forms.TextBox();
             this.LogInButton = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
             // 
-            // textBox1
+            // LoginTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(169, 57);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(212, 27);
-            this.textBox1.TabIndex = 0;
+            this.LoginTextBox.Location = new System.Drawing.Point(169, 57);
+            this.LoginTextBox.Name = "LoginTextBox";
+            this.LoginTextBox.Size = new System.Drawing.Size(212, 27);
+            this.LoginTextBox.TabIndex = 0;
             // 
             // LoginLabel
             // 
@@ -60,12 +61,12 @@
             this.PasswordLabel.TabIndex = 2;
             this.PasswordLabel.Text = "Пароль:";
             // 
-            // textBox2
+            // PasswordTextBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(169, 110);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(212, 27);
-            this.textBox2.TabIndex = 3;
+            this.PasswordTextBox.Location = new System.Drawing.Point(169, 110);
+            this.PasswordTextBox.Name = "PasswordTextBox";
+            this.PasswordTextBox.Size = new System.Drawing.Size(212, 27);
+            this.PasswordTextBox.TabIndex = 3;
             // 
             // LogInButton
             // 
@@ -75,17 +76,22 @@
             this.LogInButton.TabIndex = 4;
             this.LogInButton.Text = "Войти";
             this.LogInButton.UseVisualStyleBackColor = true;
+            this.LogInButton.Click += new System.EventHandler(this.LogInButton_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // AutorisationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(557, 324);
+            this.ClientSize = new System.Drawing.Size(487, 295);
             this.Controls.Add(this.LogInButton);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.PasswordTextBox);
             this.Controls.Add(this.PasswordLabel);
             this.Controls.Add(this.LoginLabel);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.LoginTextBox);
             this.Name = "AutorisationForm";
             this.Text = "Авторизация";
             this.ResumeLayout(false);
@@ -95,10 +101,11 @@
 
         #endregion
 
-        private TextBox textBox1;
+        private TextBox LoginTextBox;
         private Label LoginLabel;
         private Label PasswordLabel;
-        private TextBox textBox2;
+        private TextBox PasswordTextBox;
         private Button LogInButton;
+        private OpenFileDialog openFileDialog1;
     }
 }
