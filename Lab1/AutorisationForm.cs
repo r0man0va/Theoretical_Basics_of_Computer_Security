@@ -40,8 +40,8 @@ namespace Lab1
             if (Login(UsersLogin, UsersPassword))
             {
                 this.Hide();
-                //Form2 newForm = new Form2();
-                // newForm.Show();
+                PersonalCabinetForm newPersonalCabinetForm = new PersonalCabinetForm();
+                newPersonalCabinetForm.Show();
             }
             else MessageBox.Show(String.Format("Какой-то текст про попытки"));
         }
@@ -53,90 +53,51 @@ namespace Lab1
 
             using (FileStream fs = File.Open(CurrentFile, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None))
             {
-                using (StreamWriter sw = new StreamWriter(fs))
+                StreamWriter sw = new StreamWriter(fs);
+                
+                if (fs.Length == 0)
                 {
-                    if (fs.Length == 0)
+                    sw.WriteLine(UsersData);
+                    sw.Flush();
+                    MessageBox.Show("Вы были зарегистрированыы");
+                    return true;
+                }
+                else
+                {
+                    StreamReader sr = new StreamReader(fs);
+                    
+                    string? line;
+                    while ((line = sr.ReadLine()) != null)
                     {
-                        sw.WriteLine(UsersData);
-                        sw.Flush();
-                        MessageBox.Show("Вы были зарегистрированыы");
-                    }
-                    else
-                    {
-                        using (StreamReader sr = new StreamReader(fs)) 
+                        Regex regex = new Regex(@"[\w]+");
+                        MatchCollection matches = regex.Matches(line);
+                        if (matches[0].Value == usersLogin) //если логин в журнале имеется
                         {
-                            string? line;
-                            while ((line = sr.ReadLine()) != null)
+                            if (matches[1].Value == usersPassword)
                             {
-                                Regex regex = new Regex(@"[\w]+");
-                                MatchCollection matches = regex.Matches(line);
-                                if (matches[0].Value == usersLogin) //если логин в журнале имеется
-                                {
-                                    if (matches[1].Value == usersPassword)
-                                    {
-                                        MessageBox.Show("Вход выполнен");
-                                        return true; // логин и пароль совпали
-                                    }
-                                    else
-                                    {
-                                        MessageBox.Show("Неверный пароль");
-                                        return false;
-                                    }
-                                }
-                                
+                                MessageBox.Show("Вход выполнен");
+                                return true; // логин и пароль совпали
+                            }
+                            else
+                            {
+                                MessageBox.Show("Неверный пароль");
+                                return false;
                             }
                         }
-
-                        sw.WriteLine(UsersData);
-                        //sw.Flush();
-                        MessageBox.Show("Вы были зарегистрированыы");
-                        //1. есть ли такой логин? да - совпаадет пароль? - да - верно новое окно Личный кабинет;
-                        //                                               -нет-окно Ошибка
-                        //                       -нет - добавить логи и пароль
-                        MessageBox.Show("ситуация когда в текстовом файле есть данные");
+                                
                     }
                 }
-           
+
+                sw.WriteLine(UsersData);
+                //sw.Flush();
+                MessageBox.Show("Вы были зарегистрированыы");
+                return true;
+                //1. есть ли такой логин? да - совпаадет пароль? - да - верно новое окно Личный кабинет;
+                //                                               -нет-окно Ошибка
+                //                       -нет - добавить логи и пароль
+                
             }
-                //if (!File.Exists(CurrentFile))
-                //{
-                //    //if (openFileDialog1.ShowDialog() == DialogResult.OK)
-                //    //{
-                //    //    SR = new System.IO.StreamReader(openFileDialog1.FileName);
-                //    //    if (!FileEx(openFileDialog1.FileName))
-                //    //    {
-                //    //        SR.Close();
-                //    //        using (StreamWriter sr = new StreamWriter(openFileDialog1.FileName)) sr.WriteLine(usersLogin, usersPassword);
-                //    //        MessageBox.Show("Файл был пуст. Пароль был записан", "Внимание");
-                //    //        return true;
-                //    //    }
-                //    //}
-
-
-                //}
-                //else 
-                ////{
-                ////    SR = new System.IO.StreamReader("LoginPasswords.txt");
-                ////    if (!FileEx("LoginPasswords.txt"))
-                ////    {
-                ////        SR.Close();
-                ////        using (StreamWriter sr = new StreamWriter("LoginPasswords.txt")) sr.WriteLine(usersLogin, usersPassword);
-                ////        MessageBox.Show("Файл был пуст. пароль был записан", "Внимание");
-                ////        return true;
-                ////    }
-                //}
-                //try
-                //{
-                //    while (SR.Peek() > -1) if (usersPassword == SR.ReadLine()) return true;
-                //}
-                //catch (Exception ex)
-                //{
-                //    MessageBox.Show(ex.Message);
-                //}
-                //finally
-                //{
-                //    if (SR != null) SR.Close();
-                //}
+                
             MessageBox.Show("Неверный пароль!", "Ошибка");
 
             return false;

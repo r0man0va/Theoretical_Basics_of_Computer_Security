@@ -16,6 +16,7 @@ namespace Lab1
 
         private void AutorisationButton_Click(object sender, EventArgs e)
         {
+            this.Hide();
             AutorisationForm autorisationForm = new AutorisationForm();
             autorisationForm.ShowDialog();
         }
