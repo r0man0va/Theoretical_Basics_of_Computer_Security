@@ -40,6 +40,7 @@
             this.AutorisationButton.TabIndex = 0;
             this.AutorisationButton.Text = "Авторизация";
             this.AutorisationButton.UseVisualStyleBackColor = true;
+            this.AutorisationButton.Click += new System.EventHandler(this.AutorisationButton_Click);
             // 
             // AboutButton
             // 

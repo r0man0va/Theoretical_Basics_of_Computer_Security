@@ -13,5 +13,11 @@ namespace Lab1
             aboutForm.ShowDialog();
 
         }
+
+        private void AutorisationButton_Click(object sender, EventArgs e)
+        {
+            AutorisationForm autorisationForm = new AutorisationForm();
+            autorisationForm.ShowDialog();
+        }
     }
 }
