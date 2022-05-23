@@ -40,7 +40,7 @@ namespace Lab1
             if (Login(UsersLogin, UsersPassword))
             {
                 this.Hide();
-                PersonalCabinetForm newPersonalCabinetForm = new PersonalCabinetForm();
+                PersonalCabinetForm newPersonalCabinetForm = new PersonalCabinetForm(UsersPassword, UsersLogin);
                 newPersonalCabinetForm.Show();
             }
             else MessageBox.Show(String.Format("Какой-то текст про попытки"));
