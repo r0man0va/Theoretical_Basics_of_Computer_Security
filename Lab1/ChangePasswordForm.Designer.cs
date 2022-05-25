@@ -85,6 +85,7 @@
             this.ConfirmChangingButton.TabIndex = 5;
             this.ConfirmChangingButton.Text = "Изменить";
             this.ConfirmChangingButton.UseVisualStyleBackColor = true;
+            this.ConfirmChangingButton.Click += new System.EventHandler(this.ConfirmChangingButton_Click);
             // 
             // ChangePasswordForm
             // 
